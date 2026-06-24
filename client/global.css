@@ -1,0 +1,416 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+   *
+   * Corporate Blue Theme for IGA
+   * Primary: Professional corporate blue (#0A3D62)
+   * Secondary: Light blue (#4A90E2)
+   * Accent: Soft gradient highlights
+  */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 206 80% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 206 80% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 206 80% 15%;
+
+    --primary: 206 80% 21%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 92% 65%;
+    --secondary-foreground: 206 80% 15%;
+
+    --muted: 210 14% 83%;
+    --muted-foreground: 210 8% 40%;
+
+    --accent: 217 92% 65%;
+    --accent-foreground: 206 80% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 14% 89%;
+    --input: 210 14% 95%;
+    --ring: 206 80% 21%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 206 80% 15%;
+    --sidebar-primary: 206 80% 21%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 92% 85%;
+    --sidebar-accent-foreground: 206 80% 21%;
+    --sidebar-border: 210 14% 89%;
+    --sidebar-ring: 206 80% 21%;
+  }
+
+  .dark {
+    --background: 206 80% 12%;
+    --foreground: 0 0% 95%;
+
+    --card: 206 80% 18%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 206 80% 18%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 217 92% 70%;
+    --primary-foreground: 206 80% 12%;
+
+    --secondary: 217 92% 75%;
+    --secondary-foreground: 206 80% 12%;
+
+    --muted: 210 14% 25%;
+    --muted-foreground: 210 8% 70%;
+
+    --accent: 217 92% 70%;
+    --accent-foreground: 206 80% 12%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 14% 20%;
+    --input: 210 14% 20%;
+    --ring: 217 92% 70%;
+
+    --sidebar-background: 206 80% 15%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 217 92% 70%;
+    --sidebar-primary-foreground: 206 80% 12%;
+    --sidebar-accent: 217 92% 25%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 210 14% 20%;
+    --sidebar-ring: 217 92% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
+    white-space: pre;
+  }
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(10, 61, 98, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(10, 61, 98, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(10, 61, 98, 0.3);
+  }
+}
+
+@keyframes buttonRipple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* ==================== COMPONENT STYLING ==================== */
+
+/* Hero Section */
+.hero-section {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-section h1 {
+  animation: slideInDown 0.6s ease-out;
+}
+
+.hero-section p {
+  animation: fadeIn 0.8s ease-out 0.2s both;
+}
+
+/* Service Cards */
+.service-card {
+  animation: scaleIn 0.5s ease-out;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(10, 61, 98, 0.15);
+}
+
+.service-card:hover .service-icon {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.service-icon {
+  transition: all 0.3s ease;
+}
+
+/* Buttons */
+button,
+.btn,
+[role="button"] {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+button:hover:not(:disabled),
+.btn:hover,
+[role="button"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(10, 61, 98, 0.2);
+}
+
+button:active:not(:disabled),
+.btn:active,
+[role="button"]:active {
+  transform: translateY(0);
+}
+
+/* CTA Buttons with Gradient */
+.btn-gradient {
+  background: linear-gradient(135deg, hsl(206, 80%, 21%) 0%, hsl(217, 92%, 65%) 100%);
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  box-shadow: 0 15px 35px rgba(10, 61, 98, 0.3);
+}
+
+/* Form Inputs */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+textarea,
+select {
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1), 0 0 0 1px hsl(206, 80%, 21%);
+  animation: glow 1.5s ease-in-out infinite;
+}
+
+/* Navigation Link Hover */
+nav a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, hsl(206, 80%, 21%), hsl(217, 92%, 65%));
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Pricing Cards */
+.pricing-card {
+  transition: all 0.3s ease;
+}
+
+.pricing-card:hover {
+  box-shadow: 0 20px 40px rgba(10, 61, 98, 0.2);
+}
+
+.pricing-card.featured {
+  transform: scale(1.05);
+  box-shadow: 0 25px 50px rgba(10, 61, 98, 0.25);
+}
+
+/* Section Backgrounds */
+section {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Fade in on scroll */
+.fade-in-section {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+}
+
+/* ==================== UTILITY CLASSES ==================== */
+
+.text-gradient {
+  background: linear-gradient(135deg, hsl(206, 80%, 21%) 0%, hsl(217, 92%, 65%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shadow-lg-blue {
+  box-shadow: 0 20px 40px rgba(10, 61, 98, 0.15);
+}
+
+.shadow-xl-blue {
+  box-shadow: 0 30px 60px rgba(10, 61, 98, 0.25);
+}
+
+.border-gradient {
+  border-image: linear-gradient(135deg, hsl(206, 80%, 21%), hsl(217, 92%, 65%)) 1;
+}
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(10, 61, 98, 0.15);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
