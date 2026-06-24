@@ -279,21 +279,22 @@ async function applyConfirmedPayment(
 export const razorpayWebhook: RequestHandler = async (req, res) => {
   try {
     const signature = req.headers["x-razorpay-signature"] as string | undefined;
-    const rawBody = (req as any).rawBody as string | undefined;
+    const rawBody = Buffer.isBuffer(req.body) ? req.body.toString("utf8") : undefined;
 
     if (!signature || !rawBody || !verifyWebhookSignature(rawBody, signature)) {
       res.status(400).json({ success: false, message: "Invalid webhook signature" });
       return;
     }
 
-    const event = req.body?.event as string;
+    const payload = JSON.parse(rawBody);
+    const event = payload?.event as string;
     if (event !== "payment.captured" && event !== "order.paid") {
       // Acknowledge but ignore events we don't care about.
       res.json({ success: true });
       return;
     }
 
-    const paymentEntity = req.body?.payload?.payment?.entity;
+    const paymentEntity = payload?.payload?.payment?.entity;
     if (!paymentEntity) {
       res.json({ success: true });
       return;

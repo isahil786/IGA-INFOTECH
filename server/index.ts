@@ -35,15 +35,14 @@ export function createServer() {
   // Middleware
   app.use(cors());
 
-  // Razorpay webhooks must be verified against the exact raw request body,
-  // so capture it before the JSON body-parser consumes the stream.
-  app.use(
-    express.json({
-      verify: (req: any, _res, buf) => {
-        req.rawBody = buf.toString();
-      },
-    }),
-  );
+  // Razorpay webhooks must be verified against the exact raw request body.
+  // Apply raw-body parsing ONLY to that one route, before the global JSON
+  // parser — this avoids interfering with normal JSON body parsing for
+  // every other route (which broke in the Netlify Functions environment
+  // when using a global express.json({ verify }) approach).
+  app.use("/api/payments/webhook", express.raw({ type: "*/*" }));
+
+  app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
   // Example API routes
